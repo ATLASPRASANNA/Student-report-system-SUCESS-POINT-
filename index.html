@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Student Progress Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Student Progress Tracker home">
+      <span class="brand-mark" aria-hidden="true">SP</span>
+      <span>Student Progress</span>
+    </a>
+    <span class="topbar-note">A clear view of every step forward</span>
+  </header>
+
+  <main class="page">
+    <section class="page-heading" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">OVERVIEW</p>
+        <h1 id="page-title">Progress dashboard</h1>
+        <p class="muted">Record exam results and follow progress over time.</p>
+      </div>
+      <p class="today" id="today"></p>
+    </section>
+
+    <p class="notice" id="notice" role="status" aria-live="polite" hidden></p>
+
+    <section class="stats" aria-label="Class summary">
+      <article class="stat-card">
+        <span class="stat-icon indigo" aria-hidden="true">◎</span>
+        <div><p>Students</p><strong id="student-count">0</strong></div>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon mint" aria-hidden="true">↗</span>
+        <div><p>Class average</p><strong id="class-average">—</strong></div>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon peach" aria-hidden="true">▤</span>
+        <div><p>Exam results</p><strong id="result-count">0</strong></div>
+      </article>
+    </section>
+
+    <div class="dashboard-grid">
+      <section class="panel progress-panel" aria-labelledby="progress-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="progress-title">Progress over time</h2>
+            <p class="muted" id="selected-student-label">Select a student to view their results.</p>
+          </div>
+          <span class="chart-key"><span></span> Score percentage</span>
+        </div>
+        <div class="chart-wrap" id="chart-wrap">
+          <p class="empty-chart">Add exam results to see progress here.</p>
+        </div>
+        <div class="chart-caption" id="chart-caption"></div>
+      </section>
+
+      <section class="panel students-panel" aria-labelledby="students-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="students-title">Students</h2>
+            <p class="muted">Choose a student to see their trend.</p>
+          </div>
+          <span class="count-pill" id="student-list-count">0</span>
+        </div>
+        <div class="student-list" id="student-list"></div>
+      </section>
+
+      <section class="panel form-panel" aria-labelledby="add-result-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="add-result-title">Add exam result</h2>
+            <p class="muted">Results update the dashboard immediately.</p>
+          </div>
+          <span class="form-icon" aria-hidden="true">＋</span>
+        </div>
+        <form id="exam-form">
+          <label>
+            Student
+            <select id="exam-student" name="student" required>
+              <option value="">Add a student first</option>
+            </select>
+          </label>
+          <div class="field-row">
+            <label>
+              Exam
+              <input name="exam" type="text" maxlength="60" placeholder="e.g. Midterm 1" required>
+            </label>
+            <label>
+              Subject
+              <input name="subject" type="text" maxlength="40" placeholder="e.g. Mathematics" required>
+            </label>
+          </div>
+          <div class="field-row score-row">
+            <label>
+              Score
+              <input name="score" type="number" min="0" step="any" placeholder="82" required>
+            </label>
+            <span class="score-divider" aria-hidden="true">/</span>
+            <label>
+              Out of
+              <input name="maxScore" type="number" min="0.01" step="any" value="100" required>
+            </label>
+            <label>
+              Exam date
+              <input name="date" type="date" required>
+            </label>
+          </div>
+          <button class="button button-primary" type="submit">Save exam result <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <section class="panel add-student-panel" aria-labelledby="add-student-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="add-student-title">Add a student</h2>
+            <p class="muted">Start a progress record for a student.</p>
+          </div>
+        </div>
+        <form id="student-form">
+          <label>
+            Student name
+            <input name="name" type="text" maxlength="80" placeholder="Full name" required>
+          </label>
+          <label>
+            Class or group <span class="optional">(optional)</span>
+            <input name="group" type="text" maxlength="40" placeholder="e.g. Grade 8A">
+          </label>
+          <button class="button button-secondary" type="submit">Add student</button>
+        </form>
+      </section>
+    </div>
+    <footer>Exam results are saved in this browser on this device.</footer>
+  </main>
+</body>
+</html>
